@@ -12,4 +12,10 @@ export const SUCCESS_MSG = {
   PRODUCT_FETCHED: "Product fetched successfully.",
   PRODUCTS_FETCHED: "Products fetched successfully.",
   PRODUCT_PUBLISHED: "Product published successfully.",
+
+  SELLER_CREATED: "Seller created successfully.",
+  UPDATED_SELLER: "Seller updated successfully.",
+
+  ORDER_FETCHED: "Order fetched successfully.",
+  ORDER_UPDATED: "Order updated successfully.",
 };

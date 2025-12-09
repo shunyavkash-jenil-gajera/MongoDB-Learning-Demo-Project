@@ -8,6 +8,7 @@ export const ERROR_MSG = {
   TOKEN_EXPIRED: "The token has expired.",
   INVALID_TOKEN: "The token provided is invalid.",
   UNAUTHORIZED: "Unauthorized access.",
+  INVALID_CREDENTIALS: "Invalid email or password.",
 
   PRODUCT_NOT_FOUND: "Product not found.",
   PRODUCT_CREATION_ERROR: "An error occurred while creating the product.",
@@ -16,4 +17,8 @@ export const ERROR_MSG = {
   PRODUCT_FETCH_ERROR: "An error occurred while fetching the product.",
   PRODUCTS_FETCH_ERROR: "An error occurred while fetching products.",
   PRODUCT_PUBLISH_ERROR: "An error occurred while publishing the product.",
+
+  SELLER_NOT_FOUND: "Seller not found.",
+
+  ORDER_NOT_FOUND: "Order not found.",
 };

@@ -1,12 +1,11 @@
 import express from "express";
 import { authMiddleware, isAdmin } from "../middlewares/auth.middleware.js";
 import {
+  createSeller,
   getAllSellers,
   getAllUsers,
-} from "../controllers/admin/admin.controller.js";
-import { updateSellerIsActive } from "../controllers/admin/updateSellerIsActive.controller.js";
-import { createSeller } from "../controllers/admin/createSeller.controller.js";
-
+  updateSellerIsActive,
+} from "../controllers/admin/index.admin.js";
 const router = express.Router();
 
 router.get("/users", authMiddleware, isAdmin, getAllUsers);

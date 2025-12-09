@@ -64,3 +64,31 @@ export const isSeller = (req, res, next) => {
     res.status(403).json({ message: "Access denied. Sellers only." });
   }
 };
+
+export const isUser = (req, res, next) => {
+  const user = req.user;
+
+  if (user && user.role === "user") {
+    next();
+  } else {
+    res.status(403).json({ message: "Access denied. Users only." });
+  }
+};
+export const isSellerOrAdmin = (req, res, next) => {
+  const user = req.user;
+
+  if (user && (user.role === "seller" || user.role === "admin")) {
+    next();
+  } else {
+    res.status(403).json({ message: "Access denied. Sellers or Admins only." });
+  }
+};
+export const isUserOrAdmin = (req, res, next) => {
+  const user = req.user;
+
+  if (user && (user.role === "user" || user.role === "admin")) {
+    next();
+  } else {
+    res.status(403).json({ message: "Access denied. Users or Admins only." });
+  }
+};
