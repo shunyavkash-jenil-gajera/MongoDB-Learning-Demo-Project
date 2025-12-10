@@ -6,19 +6,29 @@ import { asyncHandler } from "../../utils/asyncHandler.js";
 import { upload } from "../../utils/multer.js";
 
 export const createProduct = asyncHandler(async (req, res) => {
-  upload.single("images")(req, res, async (err) => {
+  upload.array("images", 10)(req, res, async (err) => {
     if (err) throw new ApiError(400, err.message);
 
     const { name, price, description, category } = req.body;
+
+    if (!req.files || req.files.length === 0) {
+      throw new ApiError(400, "Product images are required");
+    }
+    const imageUrls = req.files.map((file) => {
+      return `${req.protocol}://${req.get("host")}/${file.path}`;
+    });
+
     const product = new Product({
       name,
       price,
       description,
       category,
-      images: req.file.path,
+      images: imageUrls,
       userId: req.user.id,
     });
+
     await product.save();
+
     res
       .status(201)
       .json(new ApiResponse(201, product, SUCCESS_MSG.PRODUCT_CREATED));

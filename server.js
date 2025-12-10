@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { connectMongodb } from "./src/config/db.js";
 import routes from "./src/routes/index.js";
+import cors from "cors";
 
 dotenv.config();
 const app = express();
@@ -16,7 +17,16 @@ connectMongodb(process.env.MONGO_URL);
 //   });
 // });
 
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    // origin: process.env.FRONTEND_URL,
+    credentials: true,
+  })
+);
+
 app.use("/api/v1", routes);
+app.use("/uploads", express.static("uploads"));
 
 // server start
 app.listen(process.env.PORT, () => {

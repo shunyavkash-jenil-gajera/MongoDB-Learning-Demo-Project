@@ -6,11 +6,7 @@ import { ApiResponse } from "../../utils/ApiResponse.js";
 import { asyncHandler } from "../../utils/asyncHandler.js";
 
 export const createSeller = asyncHandler(async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
-
-  if ([firstName, lastName, email, password].some((field) => !field)) {
-    throw new ApiError(400, ERROR_MSG.ALL_FIELDS_ARE_REQUIRED);
-  }
+  const { firstName, lastName, email, password, mobileNumber } = req.body;
 
   const existingSeller = await User.findOne({ email });
   if (existingSeller) {
@@ -22,6 +18,7 @@ export const createSeller = asyncHandler(async (req, res) => {
     lastName,
     email,
     password,
+    mobileNumber,
     role: "seller",
   });
 

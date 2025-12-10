@@ -9,10 +9,6 @@ import { SUCCESS_MSG } from "../../constants/successMessage.js";
 export const signIn = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  if ([email, password].some((field) => !field)) {
-    throw new ApiError(400, ERROR_MSG.ALL_FIELDS_ARE_REQUIRED);
-  }
-
   const user = await User.findOne({ email });
 
   if (!user) {

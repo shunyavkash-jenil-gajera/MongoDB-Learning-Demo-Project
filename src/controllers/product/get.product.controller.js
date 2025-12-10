@@ -19,6 +19,8 @@ export const getProductById = asyncHandler(async (req, res) => {
 export const getAllProducts = asyncHandler(async (req, res) => {
   const { role, id: userId } = req.user;
 
+  console.log("User Role:", role);
+
   let products;
 
   if (role === "admin") {
@@ -26,7 +28,7 @@ export const getAllProducts = asyncHandler(async (req, res) => {
   } else if (role === "seller") {
     products = await Product.find({ userId });
   } else {
-    products = await Product.find({ published: true });
+    products = await Product.find({ isPublished: true });
   }
 
   res
