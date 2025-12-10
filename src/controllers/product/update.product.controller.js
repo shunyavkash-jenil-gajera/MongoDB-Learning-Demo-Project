@@ -40,14 +40,20 @@ export const updateProduct = asyncHandler(async (req, res) => {
         (img) => !removeList.includes(img)
       );
     }
-
+    let newImages = [];
     if (req.files && req.files.length > 0) {
-      const newImageUrls = req.files.map((file) => {
+      newImages = req.files.map((file) => {
         return `${req.protocol}://${req.get("host")}/${file.path}`;
       });
-
-      product.images.push(...newImageUrls);
     }
+    product.images = newImages;
+    // if (req.files && req.files.length > 0) {
+    //   const newImageUrls = req.files.map((file) => {
+    //     return `${req.protocol}://${req.get("host")}/${file.path}`;
+    //   });
+
+    //   product.images.push(...newImageUrls);
+    // }
 
     product.name = updates.name || product.name;
     product.price = updates.price || product.price;
