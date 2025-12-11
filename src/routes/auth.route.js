@@ -8,7 +8,10 @@ import {
 
 const router = Router();
 
+// for signUp user
 router.post("/sign-up", validate(userRegisterSchema), signUp);
+
+// for logIn user
 router.post("/log-in", validate(userLoginSchema), signIn);
 
 export default router;

@@ -11,9 +11,16 @@ import { createSellerSchema } from "../validation/seller.validation.js";
 
 const router = express.Router();
 
+//for get all users
 router.get("/users", authMiddleware, isAdmin, getAllUsers);
+
+// for get all sellers
 router.get("/sellers", authMiddleware, isAdmin, getAllSellers);
+
+// for update sellers status
 router.put("/sellers/status", authMiddleware, isAdmin, updateSellerIsActive);
+
+// for create seller
 router.post(
   "/sellers",
   validate(createSellerSchema),
@@ -23,8 +30,3 @@ router.post(
 );
 
 export default router;
-
-//today i worked on my demo project ,
-// deisgn and impliment product module pages , and after that ,
-// i added error handler and logger ,
-// and i improve folder structure on the backend
